@@ -38,12 +38,33 @@ CHILDREN:
           </router-link>
 
           <router-link 
-              v-if="routeName != 'saved' && authenticated"
+              v-if="routeName != 'favs' && authenticated"
               tag="li" 
-              :to="{name: 'saved'}"
+              :to="{name: 'favs'}"
             >Saved Listings<sup v-if="savedCount">({{ savedCount }})</sup>
           </router-link>
 
+          <router-link
+            v-if="routeName != 'create' && authenticated"
+            tag="li"
+            :to="{name: 'create'}"
+          >Create Listing
+          </router-link>
+
+          <router-link
+            v-if="routeName != 'ChatHome' && authenticated"
+            tag="li"
+            :to="{name: 'ChatHome'}"
+          >Chat
+          </router-link>
+
+          <router-link
+            v-if="routeName != 'profilePage' && authenticated"
+            tag="li"
+            :to="{name: 'profilePage'}"
+          >Profile
+          </router-link>
+          
           <router-link
               v-if="!authenticated"
               tag="li" 
@@ -87,13 +108,13 @@ CHILDREN:
     },
     computed: {
       authenticated () {
-        return this.$store.state.auth
+        return this.$store.state.user.auth
       },
       routeName () {
         return this.$route.name
       },
       savedCount () {
-        return this.$store.state.saved.length
+        return this.$store.state.user.saved.length
       },
       logoUrl () {
         return `${window.cdn_url || ''}images/logo.png`

@@ -17,7 +17,7 @@ PURPOSE:
     <header-image
         v-if="listing.images"
         :image-url="listing.images[0]"
-        @header-clicked="openModal"
+        @header-clicked="openImgModal"
         :id="listing.id"
       >
     </header-image>
@@ -43,16 +43,28 @@ PURPOSE:
             <span>{{ amenity.title }}</span>
           </template>
         </feature-list>
-
-        <feature-list title="Prices" :items="listing.prices">
-          <template slot-scope="price">
-              {{ price.title }}: <strong>{{ price.value }}</strong>
-          </template>
-        </feature-list>
+        <hr>
+        <div class="listItems">
+          <button class="btn btn-link" @click.stop="openMenuModal()">
+            Add Menu Item
+          </button>
+        </div>
+        <listing-items></listing-items>
+                <!--
+                <feature-list title="Prices" :items="listing.prices">
+                    <template slot-scope="price">
+                        {{ price.title }}: <strong>{{ price.value }}</strong>
+                    </template>
+                </feature-list>
+                -->
       </div>
+      <listing-comments></listing-comments>
 
     </div>
 
+    <modal-window ref="menuModal">
+      <listingItemCreate></listingItemCreate>
+    </modal-window>
     <modal-window ref="imagemodal">
       <image-carousel :images="listing.images"></image-carousel>
     </modal-window>
@@ -69,6 +81,9 @@ PURPOSE:
   import HeaderImage from './HeaderImage.vue'
   import FeatureList from './FeatureList.vue'
   import ExpandableText from '../Helper/ExpandableText.vue'
+  import ListingItems from './ListingItems.vue'
+  import ListingComments from './ListingComments.vue'
+  import ListingItemCreate from './ListingItemCreate.vue';
 
   export default {
     components: {
@@ -76,7 +91,10 @@ PURPOSE:
       FeatureList,
       HeaderImage,
       ModalWindow,
-      ImageCarousel
+      ImageCarousel,
+      ListingItems,
+      ListingComments,
+      ListingItemCreate
     },
 
     computed: {
@@ -88,8 +106,11 @@ PURPOSE:
     },
 
     methods: {
-      openModal () {
+      openImgModal () {
         this.$refs.imagemodal.modalOpen = true;
+      },
+      openMenuModal() {
+          this.$refs.menuModal.modalOpen = true;
       }
     }
     
@@ -119,4 +140,19 @@ PURPOSE:
   .about h3 {
     font-size: 22px;
   }
+  .btn-link {
+    background-color: #4fc08d;
+    font-size: 24px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid #DBDBDB;
+    border-radius: 5px;
+    box-shadow: 1px 2px;
+    padding-top: 5px 0 5px 0;
+    padding-bottom: 5px;
+}
+.btn-link:active {
+    padding: 8px 0 5px 0;
+    box-shadow: none;
+}
 </style>

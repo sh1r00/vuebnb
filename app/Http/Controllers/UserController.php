@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
@@ -29,4 +30,7 @@ class UserController extends Controller
         return response()->json();
     }
     
+    public function AuthRouteAPI(Request $request){
+        return $request->user();
+     }
 }

@@ -13,8 +13,15 @@ axios.defaults.headers.common = {
 
 export default new Vuex.Store({
   state: {
-    auth: false,
-    saved: [],
+    user: {
+      auth: false,
+      id: '',
+      name: '',
+      email: '',
+      created: [],
+      saved: [],
+      comments: []
+    },
     loading: false,
     loading_id: null,
     listing_summaries: [],
@@ -25,37 +32,52 @@ export default new Vuex.Store({
   mutations: {
     toggleSaved(state, id) {
       // try to find this id in the array
-      let index = state.saved.findIndex(saved => saved === id);
+      let index = state.user.saved.findIndex(saved => saved === id);
       // if not found, push it into the array
       if (index === -1) {
-        state.saved.push(id);
+        state.user.saved.push(id);
         // if found, remove it from the array
       } else {
-        state.saved.splice(index, 1);
+        state.user.saved.splice(index, 1);
+      }
+      state.loading = false
+    },
+    addCreated(state, id) {
+      let index = state.user.created.findIndex(created => created === id);
+      if (index === -1) {
+        state.user.created.push(id);
       }
       state.loading = false
     },
     addData(state, { route, data }) {
       // save authentication data from the host
       if (data.auth) {
-        state.auth = data.auth;
-      }      
+        state.user.auth = data.auth;
+        console.log('userAuth:', this.state.user.auth)
+      }
       // push the new data into the Vuex store
       if (route === 'listing') {
         state.listings.push(data.listing);
       } else {
         state.listing_summaries = data.listings;
-      }      
+      }
+    },
+    addUserData(state, serverData) {
+      state.user.id = serverData.userId;
+      state.user.name = serverData.name;
+      state.user.email = serverData.email;
+      console.log('user:', this.state.user)
+
     }
   },
 
   actions: {
     toggleSaved ({ commit, state }, id) {
       // only if user is logged in
-      if (state.auth) {
+      if (state.user.auth) {
         state.loading = true
         state.loading_id = id
-        axios.post('/api/user/toggle_saved', { id })
+        axios.post('/user/toggle_saved', { id })
           .then(
             () => commit('toggleSaved', id)
           )
@@ -68,6 +90,9 @@ export default new Vuex.Store({
   getters: {
     getListing (state) {
       return id => state.listings.find(listing => id == listing.id)
+    },
+    getUser (state) {
+      return state.user
     }
   }
 

@@ -6,9 +6,16 @@ Vue.use(VueRouter);
 import LoginPage from '../components/Auth/LoginPage.vue'
 import Register from '../components/Auth/Register.vue'
 
+import ListingItemCreate from '../components/Listings/ListingItemCreate.vue'
+import ListingCreate from '../components/Listings/ListingCreate.vue'
+import ListingItemComment from '../components/Listings/listingItemComment'
 import ListingPage from '../components/Listings/ListingPage.vue'
 import HomePage from '../components/Listings/HomePage.vue'
-import SavedPage from '../components/Listings/SavedPage.vue'
+import ProfileFavs from '../components/Profile/ProfileFavs.vue'
+import ProfilePage from '../components/Profile/ProfilePage.vue'
+import ChatHome from '../components/Chat/ChatHome.vue'
+
+
 
 import axios from 'axios';
 import store from './store';
@@ -34,14 +41,39 @@ let router = new VueRouter({
       name: 'login' 
     },
     { 
-      path: '/listing/:listing',
+      path: '/listings/:listing',
       component: ListingPage,
       name: 'listing'
     },
     {
-      path: '/saved',
-      component: SavedPage,
-      name: 'saved'
+      path: '/listings/:listing/:listingItem',
+      component: ListingItemComment,
+      name: 'listingItemComment'
+    },
+    {
+      path: '/favs',
+      component: ProfileFavs,
+      name: 'favs'
+    },
+    {
+      path: '/create',
+      component: ListingCreate,
+      name: 'create'
+    },
+    {
+      path: '/listingItemCreate',
+      component: ListingItemCreate,
+      name: 'listingItemCreate'
+    },
+    {
+      path: '/profile',
+      component: ProfilePage,
+      name: 'profilePage'
+    },
+    {
+      path: '/chat',
+      component: ChatHome,
+      name: 'ChatHome'
     }
   ]
 
@@ -53,7 +85,7 @@ router.beforeEach((to, from, next) => {
   // read the data delivered in the header of the page (if any)
   let serverData = window.vuebnb_server_data ? JSON.parse(window.vuebnb_server_data) : null
   store.state.serverData = serverData
-
+  store.commit('addUserData', serverData)
   // first check if we already have the requested data in the store!
   if (
     to.name === 'listing'
@@ -70,6 +102,7 @@ router.beforeEach((to, from, next) => {
     store.state.loading = true
     axios.get(`/api${to.path}`)
       .then(({ data }) => {
+        console.log('addData: ', data)
         store.commit('addData', { route: to.name, data })
         store.state.loading = false
         next();
@@ -80,6 +113,9 @@ router.beforeEach((to, from, next) => {
     store.commit('addData', { route: to.name, data: serverData })
     if (serverData.saved) {
       serverData.saved.forEach(id => store.commit('toggleSaved', id))
+    }
+    if (serverData.created) {
+      serverData.created.forEach(id => store.commit('addCreated', id))
     }
     next()
   }

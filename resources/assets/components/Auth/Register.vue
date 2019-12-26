@@ -8,24 +8,24 @@
       <input type="hidden" name="_token" :value="csrf_token">      
 
       <div class="form-control">
-        <input id="name" type="text" name="name" v-model="name"
+        <input id="name" type="text" name="name" v-model="formRegister.name"
           placeholder="Name" required autofocus>
       </div>
 
       <div class="form-control">
-        <input id="email" type="email" name="email" v-model="email"
+        <input id="email" type="email" name="email" v-model="formRegister.email"
           placeholder="Email Address" required autofocus>
         <span class="error-msg" v-if="errors.email">{{ errors.email[0] }}</span>
       </div>
 
       <div class="form-control">
-        <input id="password" type="password" name="password" v-model="password"
+        <input id="password" type="password" name="password" v-model="formRegister.password"
           placeholder="Password" required>
         <p v-if="errors.password" class="error-msg" v-for="(err, index) in errors.password" :key="index">{{ err }}</p>
       </div>
 
       <div class="form-control">
-        <input id="password_confirm" type="password" name="password_confirmation" v-model="password_confirmation"
+        <input id="password_confirm" type="password" name="password_confirmation" v-model="formRegister.password_confirmation"
           placeholder="Confirm password" required>
       </div>
 
@@ -43,17 +43,20 @@
     data() {
       return {
         csrf_token: window.csrf_token,
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: ''
+        formRegister: {
+          name: '',
+          email: '',
+          password: '',
+          password_confirmation: '',
+          saved: [],
+          created: []
+        }
       }
     },
 
     computed: {
       registrationRoute () {
-        return window.vuebnb_registration_route
-      },
+        return window.vuebnb_registration_route      },
       errors () {
         return window.vuebnb_auth_errors
       },

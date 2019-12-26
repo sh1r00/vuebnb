@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
          * default string length in the app service provider 
          * before we run the database migrations in our production app
          */
-        \Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191);
     }
 
     /**

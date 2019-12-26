@@ -43,7 +43,7 @@ WRITES:
 
     computed: {
       isListingSaved () {
-        return this.$store.state.saved.find(saved => saved === this.id)
+        return this.$store.state.user.saved.find(saved => saved === this.id)
       },
       icon () {
         if (this.loading) return 'fa-spin fa-spinner'

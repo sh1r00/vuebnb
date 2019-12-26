@@ -26,7 +26,7 @@ DATA:
         <img class="icon" :src="logoUrl">
 
         <span>
-          <strong>Vuebnb</strong>. A full-stack Vue.js and Laravel demo app
+          <strong>Vuebnb</strong>. A full-stack Vue.js and Laravel app created by sh1r00
         </span>
 
       </p>
@@ -68,7 +68,7 @@ export default {
   }
 
   #footer p {
-    font-size</span>: 15px;
+    font-size: 15px;
     color: #767676 !important;
     display: flex;
   }

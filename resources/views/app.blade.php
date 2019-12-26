@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>Vuebnb</title>
 
@@ -23,6 +24,8 @@
 
     // provide the Anti-CSRF token
     window.csrf_token = "{{ csrf_token() }}"
+    window.pusherKey = "{{ config('broadcasting.connections.pusher.key') }}"
+    window.pusherCluster = "{{ config('broadcasting.connections.pusher.options.cluster') }}"
   </script>
 
 </head>

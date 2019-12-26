@@ -30,10 +30,15 @@ class ListingController extends Controller
         return $collection->merge([
             'path' => $request->getPathInfo(),
             'auth' => Auth::check(),
-            'saved' => Auth::check() ? Auth::user()->saved : []
+            'userId' => Auth::check() ? Auth::user()->user_id : '',
+            'name' => Auth::check() ? Auth::user()->name : '',
+            'email' => Auth::check() ? Auth::user()->email : '',
+            'saved' => Auth::check() ? Auth::user()->saved : [],
+            'created' => Auth::check() ? Auth::user()->created : [],
+            'ratings' => Auth::check() ? Auth::user()->ratings : [],
+            'comments' => Auth::check() ? Auth::user()->comments : []
         ]);
     }
-
 
     private function get_listing_summaries()
     {
@@ -62,7 +67,6 @@ class ListingController extends Controller
         return response()->json($data);
     }
 
-
     // get a single resource for the API
     public function get_listing_api(Listing $listing) 
     {
@@ -88,5 +92,17 @@ class ListingController extends Controller
         $data = $this->add_meta_data($data, $request);
 
         return view('app', ['data' => $data]);
+    }
+
+    public function store_listing(Request $request)
+    {
+        $listing = Listing::create($request->all());
+        
+        return response()->json($listing, 201);
+    }
+
+    public function view_listing($listing_id)
+    {
+        return view('page',['listing_id' => $listing_id]);
     }
 }

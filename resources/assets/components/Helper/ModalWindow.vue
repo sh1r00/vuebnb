@@ -71,6 +71,7 @@ OPTIONS:
   left: 0;
   z-index: 2000;
   background-color: rgba(0,0,0,0.55);
+  overflow-y: scroll;
 }
 
 #modal.show {

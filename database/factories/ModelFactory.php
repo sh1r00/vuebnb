@@ -22,3 +22,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\ListingItem::class, function (Faker\Generator $faker) {
+    return [
+        'listing_id' => $faker->randomDigitNotNull,
+        'title' => $faker->unique()->words(2, true),
+        'description' => $faker->text(50),
+        'strain' => $faker->randomElement($array = array('indica')),
+        'price_per_gram' => $faker->randomDigitNotNull,
+        'price_per_eigth' => $faker->randomDigitNotNull,
+        'price_per_quarter' => $faker->randomDigitNotNull,
+        'price_per_half' => $faker->randomDigitNotNull,
+        'price_per_ounce' => $faker->randomDigitNotNull,
+    ];
+});

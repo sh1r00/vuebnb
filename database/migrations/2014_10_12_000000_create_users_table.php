@@ -23,9 +23,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->text('saved')->nullable();
-            $table->text('created')->nullable();
-            $table->text('ratings')->nullable();
-            $table->text('comments')->nullable();
+            $table->text('friends')->nullable();
+            $table->text('chats')->nullable();
         });
     }
 

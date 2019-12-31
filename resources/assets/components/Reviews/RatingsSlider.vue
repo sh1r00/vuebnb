@@ -1,5 +1,8 @@
 <template>
   <div class="slider">
+      <h1 class="slider__title">
+        {{name}}
+      </h1>
     <div class="slider__wrapper">
       <div v-if="!hideLabel" :style="{ left: position }" class="slider__label">{{ sliderLabel }}</div>
       <div class="slider__track" :class="{'slider__track--rectangular': !raising}">
@@ -32,6 +35,11 @@
 <script>
 export default {
   props: {
+    name: {
+      type: String,
+      required: true,
+      default: 'unknown slider'
+    },
     value: {
       type: String,
       required: false,
@@ -140,7 +148,7 @@ export default {
       this.$emit("input", this.sliderOutputValue);
     },
     change() {
-      this.$emit("change", this.sliderOutputValue);
+      this.$emit("change", {'name': this.name, 'value': this.sliderOutputValue});
     }
   }
 };
@@ -155,7 +163,7 @@ $slider-track-background: #4fc08d !default;
 $slider-track-height: 3px !default;
 
 $thumb-background: #eee !default;
-$thumb-size: 20px;
+$thumb-size: 65px;
 
 .slider {
   position: relative;
@@ -248,7 +256,7 @@ $thumb-size: 20px;
     }
     &::-webkit-slider-runnable-track {
       width: 100%;
-      height: 10px;
+      height: 50px;
       cursor: pointer;
       animate: 0.2s;
       background: transparent;
@@ -290,7 +298,7 @@ $thumb-size: 20px;
 
     &::-moz-range-track {
       width: 100%;
-      height: 10px;
+      height: 50px;
       cursor: pointer;
       animate: 0.2s;
       background: transparent;
@@ -299,7 +307,7 @@ $thumb-size: 20px;
 
     &::-ms-track {
       width: 100%;
-      height: 10px;
+      height: 50px;
       cursor: pointer;
       animate: 0.2s;
       background: transparent;

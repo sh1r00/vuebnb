@@ -6,7 +6,7 @@
             :key="message.id"
         >
             <div class="chat-body clearfix">
-                <div class="header">
+                <div class="chat-header">
                     <strong class="primary-font">
                         {{ message.user.name }}
                     </strong>
@@ -24,3 +24,9 @@ export default {
     props: ['messages']
 }
 </script>
+
+<style>
+.chat-header {
+    height: auto;
+}
+</style>

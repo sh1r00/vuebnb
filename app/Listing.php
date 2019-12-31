@@ -9,6 +9,11 @@ class Listing extends Model
     protected $fillable = [
         'title', 'address', 'about', 'amenity_wifi', 'amenity_pets_allowed', 'amenity_tv', 'amenity_kitchen', 'amenity_breakfast', 'amenity_laptop'
     ];
+    
+    protected $dates = [
+        'created_at', 'updated_at'
+    ];
+    
     // An Eloquent model can be given a $casts property to declare the 
     // data type of any specific attribute. $casts is an array of key/values 
     // where the key is the name of the attribute being cast, and the 

@@ -21,7 +21,7 @@ mix
 
   .sass(
     'resources/assets/css/sass/app.scss',
-    'public/css'
+    'public/css/bootstraped.css'
   )
   
   .styles(
@@ -29,6 +29,7 @@ mix
       'node_modules/open-sans-all/css/open-sans.css',
       'node_modules/font-awesome/css/font-awesome.css',
       'resources/assets/css/style.css',
+      'resources/assets/css/bootstraped.css'
     ],
     'public/css/style.css'
   )

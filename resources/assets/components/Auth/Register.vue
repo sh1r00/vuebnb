@@ -7,31 +7,33 @@
 
       <input type="hidden" name="_token" :value="csrf_token">      
 
-      <div class="form-control">
+      <label for="name">
         <input id="name" type="text" name="name" v-model="formRegister.name"
           placeholder="Name" required autofocus>
-      </div>
+      </label>
 
-      <div class="form-control">
+      <label for="email">
         <input id="email" type="email" name="email" v-model="formRegister.email"
           placeholder="Email Address" required autofocus>
         <span class="error-msg" v-if="errors.email">{{ errors.email[0] }}</span>
-      </div>
+      </label>
 
-      <div class="form-control">
+      <label for="password">
         <input id="password" type="password" name="password" v-model="formRegister.password"
           placeholder="Password" required>
-        <p v-if="errors.password" class="error-msg" v-for="(err, index) in errors.password" :key="index">{{ err }}</p>
-      </div>
+        <span v-if="errors.password" class="error-msg">
+          <p  v-for="(err, index) in errors.password" :key="index">
+          {{ err }}
+          </p>
+        </span>
+      </label>
 
-      <div class="form-control">
+      <label for="password-confirm">
         <input id="password_confirm" type="password" name="password_confirmation" v-model="formRegister.password_confirmation"
           placeholder="Confirm password" required>
-      </div>
+      </label>
 
-      <div class="form-control">
-        <button type="submit">Register</button>
-      </div>
+      <button type="submit">Register</button>
 
     </form>
 

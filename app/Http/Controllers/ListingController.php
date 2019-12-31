@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Listing;
+use App\Comment;
 use Auth;
 
 class ListingController extends Controller
@@ -34,9 +35,9 @@ class ListingController extends Controller
             'name' => Auth::check() ? Auth::user()->name : '',
             'email' => Auth::check() ? Auth::user()->email : '',
             'saved' => Auth::check() ? Auth::user()->saved : [],
-            'created' => Auth::check() ? Auth::user()->created : [],
-            'ratings' => Auth::check() ? Auth::user()->ratings : [],
-            'comments' => Auth::check() ? Auth::user()->comments : []
+            'created' => Auth::check() ? Listing::where('user_id', Auth::user()->user_id) : [],
+            //'ratings' => Auth::check() ? Review::where('user_id', Auth::user()->user_id) : [],
+            'comments' => Auth::check() ? Comment::where('user_id', Auth::user()->user_id) : []
         ]);
     }
 

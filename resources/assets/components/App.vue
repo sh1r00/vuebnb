@@ -19,32 +19,35 @@ CHILDREN:
 <template>
   <div>
 
-    <div id="toolbar">
+    <div class="navbar" id="toolbar">
 
       <!-- brand logo and name -->
       <router-link 
           :to="{name: 'home'}">
-        <img class="icon" :src="logoUrl">
+        <img class="navbar-brand icon" :src="logoUrl">
         <h1>vuebnb</h1>
       </router-link>
 
       <!-- navigation menu -->
       <ul class="links cursor-pointer">
           <router-link 
-              v-if="routeName != 'home'"
-              tag="li" 
-              :to="{name: 'home'}"
-            >All Listings
+            class="nav-item nav-link"
+            v-if="routeName != 'home'"
+            tag="li" 
+            :to="{name: 'home'}"
+          >All Listings
           </router-link>
 
           <router-link 
-              v-if="routeName != 'favs' && authenticated"
-              tag="li" 
-              :to="{name: 'favs'}"
-            >Saved Listings<sup v-if="savedCount">({{ savedCount }})</sup>
+            class="nav-item nav-link"
+            v-if="routeName != 'favs' && authenticated"
+            tag="li" 
+            :to="{name: 'favs'}"
+          >Saved Listings<sup v-if="savedCount">({{ savedCount }})</sup>
           </router-link>
 
           <router-link
+            class="nav-item nav-link"
             v-if="routeName != 'create' && authenticated"
             tag="li"
             :to="{name: 'create'}"
@@ -52,6 +55,7 @@ CHILDREN:
           </router-link>
 
           <router-link
+            class="nav-item nav-link"
             v-if="routeName != 'ChatHome' && authenticated"
             tag="li"
             :to="{name: 'ChatHome'}"
@@ -59,6 +63,7 @@ CHILDREN:
           </router-link>
 
           <router-link
+            class="nav-item nav-link"
             v-if="routeName != 'profilePage' && authenticated"
             tag="li"
             :to="{name: 'profilePage'}"
@@ -66,16 +71,17 @@ CHILDREN:
           </router-link>
           
           <router-link
-              v-if="!authenticated"
-              tag="li" 
-              :to="{name: 'login'}"
-            >Login
+            class="nav-item nav-link"
+            v-if="!authenticated"
+            tag="li" 
+            :to="{name: 'login'}"
+          >Login
           </router-link>
 
           <li 
               v-if="authenticated"
               @click="logout"
-              class="router-link-active">
+              class="nav-item nav-link router-link-active">
             Logout
             <form 
                 style="display: hidden"
@@ -91,16 +97,21 @@ CHILDREN:
     <router-view></router-view>
 
     <custom-footer></custom-footer>
+    <chat-nav></chat-nav>
 
   </div>  
 </template>
 
 
 <script>
-  import CustomFooter from './CustomFooter.vue'
+import ChatNav from "./Chat/ChatNav.vue"
+import CustomFooter from './CustomFooter.vue'
 
   export default {
-    components: { CustomFooter },
+    components: {
+      CustomFooter,
+      ChatNav
+    },
     data () {
       return {
         csrf_token: window.csrf_token
@@ -133,12 +144,13 @@ CHILDREN:
   #toolbar {
     display: flex;
     justify-content: space-between;
+    height: auto;
     border-bottom: 1px solid #e4e4e4;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   }
 
   #toolbar .icon {
-    height: 34px;
+    height: 65px;
     padding: 16px 12px 16px 24px;
     display: inline-block;
   }

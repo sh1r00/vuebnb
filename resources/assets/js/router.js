@@ -23,7 +23,9 @@ import store from './store';
 let router = new VueRouter({
 
   mode: 'history',
-
+  scrollBehavior: function (to, from, savedPosition) {
+    return savedPosition || { x: 0, y: 0 }
+  },
   routes: [
     {
       path: '/',
@@ -43,10 +45,18 @@ let router = new VueRouter({
     { 
       path: '/listings/:listing',
       component: ListingPage,
-      name: 'listing'
+      name: 'listing',
+      /** children: [
+        {
+          path: ':listingItem',
+          component: ListingItemComment,
+          name: 'listingItemComment'
+        },
+      ]
+      */
     },
     {
-      path: '/listings/:listing/:listingItem',
+      path: '/listings/:listing/listingItem/:listingItem',
       component: ListingItemComment,
       name: 'listingItemComment'
     },
@@ -114,9 +124,12 @@ router.beforeEach((to, from, next) => {
     if (serverData.saved) {
       serverData.saved.forEach(id => store.commit('toggleSaved', id))
     }
+    /**
     if (serverData.created) {
       serverData.created.forEach(id => store.commit('addCreated', id))
     }
+      */
+
     next()
   }
 })

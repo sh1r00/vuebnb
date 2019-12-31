@@ -9,7 +9,7 @@
             v-model="newMessage"
             @keyup.enter="sendMessage"
         >
-        <span class="inpu-group-btn">
+        <span class="input-group-btn">
             <button
                 class="btn btn-primary btn-sm"
                 id="btn-chat"

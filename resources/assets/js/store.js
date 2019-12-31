@@ -42,11 +42,8 @@ export default new Vuex.Store({
       }
       state.loading = false
     },
-    addCreated(state, id) {
-      let index = state.user.created.findIndex(created => created === id);
-      if (index === -1) {
-        state.user.created.push(id);
-      }
+    addCreated(state, serverData) {
+      state.user.created(serverData.created)
       state.loading = false
     },
     addData(state, { route, data }) {

@@ -16,6 +16,7 @@
     "browser-sync": "^2.26.7",
     "browser-sync-webpack-plugin": "^1.2.0",
     "cross-env": "^5.1",
+    "css-loader": "^3.4.0",
     "dotenv": "^4.0.0",
     "font-awesome": "^4.7.0",
     "ftp": "^0.3.10",
@@ -25,7 +26,8 @@
     "recursive-readdir": "^2.2.1",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.3",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-style-loader": "^4.1.2"
   },
   "dependencies": {
     "bootstrap-sass": "^3.4.1",

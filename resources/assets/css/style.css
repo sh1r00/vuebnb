@@ -11,7 +11,7 @@ body {
 }
 
 @media (min-width: 744px) {
-  .listing-container {
+  .listing-container, .listing {
     width: 696px;
   }
 }

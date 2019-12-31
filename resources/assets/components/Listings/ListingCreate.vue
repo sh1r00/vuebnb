@@ -87,10 +87,9 @@
                     amenity_laptop: this.filteredAmenities.amenity_laptop
                 })
                 .then(response => {
-                    console.log(response)
-                    let listing = response.data.data
+                    let listing = response.data
                     let title = listing.title
-                    let redirectRoute = '/listing/' + listing.id
+                    let redirectRoute = '/listings/' + listing.id
                     this.$emit('completed', listing)
                     if (response.status === 201) {
                         this.$router.push(redirectRoute)

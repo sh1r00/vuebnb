@@ -95,10 +95,10 @@ export default {
                 price_per_ounce: this.price_per_ounce
             })
             .then(response => {
-                console.log(response)
-                let listingItem = response.data.data
+                console.log('create listing item response', response)
+                let listingItem = response.data
                 let title = listingItem.title
-                let redirectRoute = '/listing/' + this.listing_id
+                let redirectRoute = '/listings/' + listingItem.listing_id
                 this.$emit('completed', listingItem)
                 if (response.status == 201) {
                     this.$router.push(redirectRoute)

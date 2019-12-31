@@ -7,20 +7,18 @@
 
       <input type="hidden" name="_token" :value="csrf_token">      
 
-      <div class="form-control">
+      <label for="email">
         <input id="email" type="email" name="email" 
           placeholder="Email Address" required autofocus>
         <span class="error-msg" v-if="errors.email">{{ errors.email[0] }}</span>
-      </div>
+      </label>
 
-      <div class="form-control">
+      <label for="password">
         <input id="password" type="password" name="password" 
           placeholder="Password" required>
-      </div>
+      </label>
 
-      <div class="form-control">
         <button type="submit">Log in</button>
-      </div>
 
     </form>
 
@@ -56,7 +54,7 @@ export default {
     }
   }
 
-  #login .form-control {
+  #login {
     margin-bottom: 1em;
   }
 

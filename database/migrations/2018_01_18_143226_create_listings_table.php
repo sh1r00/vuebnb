@@ -14,8 +14,7 @@ class CreateListingsTable extends Migration
     public function up()
     {
         Schema::create('listings', function (Blueprint $table) {
-            $table->primary('id');
-            $table->unsignedInteger('id');
+            $table->increments('id');
             $table->string('title');
             $table->string('address');
             $table->longText('about');
@@ -33,6 +32,9 @@ class CreateListingsTable extends Migration
             $table->string('price_extra_people')->nullable();
             $table->string('price_weekly_discount')->nullable();
             $table->string('price_monthly_discount')->nullable();
+
+            $table->integer('user_id');
+            $table->timestamps();
         });
     }
 

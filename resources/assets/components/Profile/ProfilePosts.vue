@@ -27,7 +27,7 @@ export default {
         console.log(this.$store.state)
       return this.$store.state.listing_summaries
         .filter(
-          item => this.$store.state.user.created.indexOf(item.id) > -1
+          item => this.$store.state.user.created.indexOf(item) > -1
         )
     }
   }

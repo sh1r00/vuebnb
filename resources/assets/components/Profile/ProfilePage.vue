@@ -3,7 +3,7 @@
         <div class="profileNav">
             <button
                 v-for="tab in tabs"
-                :key="tab"
+                :key="tab.id"
                 @click="selected = tab.name;"
                 :class="['profileNav-btn', { active: selected === tab.name }]"
             >

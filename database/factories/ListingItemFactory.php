@@ -16,6 +16,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\ListingItem::class, function (Faker $faker) {
     return [
+        'user_id' => $faker->randomDigitNotNull(2),
         'listing_id' => $faker->randomDigitNotNull,
         'title' => $faker->unique()->words(2, true),
         'description' => $faker->text(50),

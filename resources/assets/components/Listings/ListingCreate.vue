@@ -39,14 +39,12 @@
 </template>
 <script>
     import axios from 'axios';
-    import ModalWindow from '../Helper/ModalWindow.vue';
     import FeatureList from './FeatureList.vue';
     import HeaderImage from './HeaderImage.vue';
     import ExpandableText from '../Helper/ExpandableText.vue';
 
     export default {
         components: {
-            ModalWindow,
             FeatureList,
             HeaderImage,
             ExpandableText,
@@ -65,6 +63,9 @@
                     amenity_laptop: { title: 'Laptop friendly workspace', icon: 'fa-laptop', idTag:'laptop_friendly_workplace', name:'amenity_laptop'}
                 },
                 items: [],
+                user: {
+                    id: this.$store.state.user.id
+                },
                 amenitiesSelected: [],
                 filteredAmenities: {}
             }
@@ -76,6 +77,7 @@
                 this.filteredAmenities = obj
 
                 axios.post('/listingCreate', {
+                    user_id: this.user.id,
                     title: this.title,
                     address: this.address,
                     about: this.about,

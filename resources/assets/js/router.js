@@ -40,7 +40,7 @@ let router = new VueRouter({
     {
       path: '/login',
       component: LoginPage,
-      name: 'login' 
+      name: 'login'
     },
     { 
       path: '/listings/:listing',
@@ -124,11 +124,11 @@ router.beforeEach((to, from, next) => {
     if (serverData.saved) {
       serverData.saved.forEach(id => store.commit('toggleSaved', id))
     }
-    /**
     if (serverData.created) {
-      serverData.created.forEach(id => store.commit('addCreated', id))
+      console.log('serverData', serverData)
+      let created = serverData.created.id
+      store.commit('addCreated', created)
     }
-      */
 
     next()
   }

@@ -42,8 +42,8 @@ export default new Vuex.Store({
       }
       state.loading = false
     },
-    addCreated(state, serverData) {
-      state.user.created(serverData.created)
+    addCreated(state, created) {
+      state.user.created.push(created)
       state.loading = false
     },
     addData(state, { route, data }) {

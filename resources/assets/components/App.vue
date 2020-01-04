@@ -17,7 +17,7 @@ CHILDREN:
 
 -->
 <template>
-  <div>
+  <v-app>
 
     <div class="navbar" id="toolbar">
 
@@ -99,7 +99,7 @@ CHILDREN:
     <custom-footer></custom-footer>
     <chat-nav></chat-nav>
 
-  </div>  
+  </v-app>  
 </template>
 
 

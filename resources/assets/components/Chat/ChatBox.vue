@@ -65,6 +65,7 @@ export default {
         },
         addMessage(message) {
             this.messages.push(message)
+            console.log('payload', message)
             axios.post('/chat/messages', message).then(response => {
             })
         }

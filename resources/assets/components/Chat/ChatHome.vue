@@ -53,9 +53,11 @@ export default {
 }
 .chat-list {
     width: auto;
+    justify-content: right;
 }
 .chat-with {
     width: 100%;
+    right: 0;
 }
 .chat-with :active {
     width: 10%;

@@ -37,15 +37,39 @@ PURPOSE:
       </div>
 
       <div class="lists">
-        <feature-list title="Amenities" :items="listing.amenities">
-          <template slot-scope="amenity">
-            <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
-            <span>{{ amenity.title }}</span>
-          </template>
-        </feature-list>
+        <div v-if="listing.amenities.length > 0">
+          <feature-list title="Amenities" :items="listing.amenities">
+            <template slot-scope="amenity">
+              <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
+              <span>{{ amenity.title }}</span>
+            </template>
+          </feature-list>
+        </div>
+        <div
+          class="list"
+          v-else-if="listing.amenities.length === 0">
+          <hr>
+          <div class="title">
+            <strong> Amenities </strong>
+          </div>
+          <div class="content">
+            <p> We do not offer any amenities </p>
+          </div>
+        </div>
+        <div
+          class="list"
+          v-else>
+          <hr>
+          <div class="title">
+            <strong> Amenities </strong>
+          </div>
+          <div class="content">
+            <p> There was a problem loading the amenities </p>
+          </div>
+        </div>
         <hr>
         <div class="listItems">
-          <button class="btn btn-link" @click.stop="openMenuModal()">
+          <button type="button" class="btn btn-primary" @click.stop="openMenuModal()">
             Add Menu Item
           </button>
         </div>
@@ -63,7 +87,7 @@ PURPOSE:
     </div>
 
     <modal-window ref="menuModal">
-      <listingItemCreate></listingItemCreate>
+      <listingItemCreate :header="menuModalHeader"></listingItemCreate>
     </modal-window>
     <modal-window ref="imagemodal">
       <image-carousel :images="listing.images"></image-carousel>
@@ -96,7 +120,11 @@ PURPOSE:
       ListingComments,
       ListingItemCreate
     },
-
+    data () {
+      return {
+        menuModalHeader: "Create Listing Item"
+      }
+    },
     computed: {
       listing () {
         return populateAmenitiesAndPrices(
@@ -119,6 +147,12 @@ PURPOSE:
 
 
 <style>
+
+  hr {
+    border: 0;
+    border-top: 1px solid #dce0e0;
+  }
+  
   .heading {
     margin-bottom: 2em;
   }
@@ -140,6 +174,7 @@ PURPOSE:
   .about h3 {
     font-size: 22px;
   }
+
   .btn-link {
     background-color: #4fc08d;
     font-size: 24px;
@@ -150,9 +185,35 @@ PURPOSE:
     box-shadow: 1px 2px;
     padding-top: 5px 0 5px 0;
     padding-bottom: 5px;
-}
-.btn-link:active {
+  }
+  .btn-link:active {
     padding: 8px 0 5px 0;
     box-shadow: none;
-}
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 2em 0;
+  }
+
+  .list .title {
+    flex: 1 1 25%;
+  }
+
+  .list .content {
+    flex: 1 1 75%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  @media (max-width: 743px) {
+    .list .title {
+      flex: 1 1 33%;
+    }
+
+    .list .content {
+      flex: 1 1 67%;
+    }
+  }
 </style>

@@ -10,6 +10,8 @@
 
   <link rel="stylesheet" href="{{ cdn('css/style.css') }}" type="text/css">
   <link rel="stylesheet" href="{{ cdn('css/vue-style.css') }}" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
 
   <script type="text/javascript">
     // provide the source URL for assets

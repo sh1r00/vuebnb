@@ -1,6 +1,9 @@
 <template>
     <div>
         <div class="listing-container">
+            <h1 class="listingItemHeader">
+                Create Listing Item
+            </h1>
             <div class="listingItemCreate listingItemCreate_name">
                 <h1> Menu Item Title </h1>
                 <input type="text" v-model="title" />
@@ -78,12 +81,14 @@ export default {
             price_per_quarter: '',
             price_per_half: '',
             price_per_ounce: '',
-            listing_id: this.$route.params.listing
+            listing_id: this.$route.params.listing,
+            user: this.$store.state.user
         }
     },
     methods: {
         listingItemCreate() {
             axios.post('/listingItemCreate' + '/' + this.$route.params.listing, {
+                user_id: this.user.id,
                 listing_id: this.listing_id,
                 title: this.title,
                 description: this.description,
@@ -101,7 +106,7 @@ export default {
                 let redirectRoute = '/listings/' + listingItem.listing_id
                 this.$emit('completed', listingItem)
                 if (response.status == 201) {
-                    this.$router.push(redirectRoute)
+                    this.$router.go(0)
                 } else {
                     this.$emit('Could not complet post')
                 }
@@ -118,6 +123,18 @@ export default {
 .listing-container {
     background-color: white;
 }
+
+.listingItemHeader {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-size: 19px !important;
+    line-height: 24px;
+    color: #4fc08d;
+    font-weight: 300;
+    padding-bottom: 1em;
+    -webkit-appearance: none;
+}
 .listingItemCreate {
     display: flex;
     flex-direction: column;
@@ -128,8 +145,8 @@ export default {
  .listingItemCreate_description textarea,
  .btn {
     width: 100%;
-    font-size: 19px !important;
-    line-height: 24px;
+    font-size: 1.5em !important;
+    line-height: 1.8em;
     color: #484848;
     font-weight: 300;
     -webkit-appearance: none;

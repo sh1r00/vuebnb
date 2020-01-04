@@ -33,7 +33,7 @@ class CreateListingsTable extends Migration
             $table->string('price_weekly_discount')->nullable();
             $table->string('price_monthly_discount')->nullable();
 
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable();
             $table->timestamps();
         });
     }

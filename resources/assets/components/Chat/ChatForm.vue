@@ -33,7 +33,7 @@ export default {
         sendMessage() {
             this.$emit('messageSent', {
                 user: this.user,
-                message: this.newMessage
+                message: this.newMessage,
             })
             this.newMessage = ''
         }

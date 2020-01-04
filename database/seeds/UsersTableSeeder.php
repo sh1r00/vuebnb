@@ -22,9 +22,6 @@ class UsersTableSeeder extends Seeder
             'remember_token' => Str::random(60),
             'friends'        => [],
             'chats'          => [],
-            'created'        => [],
-            'ratings'        => [],
-            'comments'       => [],
             'saved'          => [1,5,7,9]
         ]);
         User::create([
@@ -35,9 +32,6 @@ class UsersTableSeeder extends Seeder
             'remember_token' => Str::random(60),
             'friends'        => [],
             'chats'          => [],
-            'created'        => [],
-            'ratings'        => [],
-            'comments'       => [],
             'saved'          => [2,11,22]
         ]);
     }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Listing extends Model
 {
     protected $fillable = [
-        'title', 'address', 'about', 'amenity_wifi', 'amenity_pets_allowed', 'amenity_tv', 'amenity_kitchen', 'amenity_breakfast', 'amenity_laptop'
+        'user_id', 'title', 'address', 'about', 'amenity_wifi', 'amenity_pets_allowed', 'amenity_tv', 'amenity_kitchen', 'amenity_breakfast', 'amenity_laptop'
     ];
     
     protected $dates = [

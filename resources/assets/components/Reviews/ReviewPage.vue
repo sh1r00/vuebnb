@@ -6,16 +6,41 @@
         <modal-window ref="reviewModal">
             <div class="sliderContainer">
                 <div class="sliderWrapper">
-                    <ratings-slider :name="slider1.name" :values="slider1.values" raising @change="persistChange">
+                    <ratings-slider
+                        :name="slider1.name"
+                        :title="slider1.title"
+                        :labels="slider1.labels"
+                        :icons="slider1.icons"
+                        :sliderMin="slider1.min"
+                        :sliderMax="slider1.max"
+                        raising @change="persistChange"
+                    >
+                        {{ slider1.name }}
                     </ratings-slider>
                 </div>
                 <div class="sliderWrapper">
-                    <ratings-slider :name="slider2.name" :values="slider2.values" raising @change="persistChange">
+                    <ratings-slider
+                        :name="slider2.name"
+                        :title="slider2.title"
+                        :labels="slider2.labels"
+                        :icons="slider2.icons"
+                        :sliderMin="slider2.min"
+                        :sliderMax="slider2.max"
+                        raising @change="persistChange"
+                    >
                         {{slider2.name}}
                     </ratings-slider>
                 </div>
                 <div class="sliderWrapper">
-                    <ratings-slider :name="slider3.name" :values="slider3.values" raising @change="persistChange">
+                    <ratings-slider
+                        :name="slider3.name"
+                        :title="slider3.title"
+                        :labels="slider3.labels"
+                        :icons="slider3.icons"
+                        :sliderMin="slider3.min"
+                        :sliderMax="slider3.max"
+                        raising @change="persistChange"
+                    >
                         {{slider3.name}}
                     </ratings-slider>
                 </div>
@@ -36,82 +61,67 @@ export default {
     data() {
         return {
             slider1: {
-                name: 'slider1',
                 value: '',
-                values: [
-                    {
-                        label: "Not at all",
-                        value: "a"
-                    },
-                    {
-                        label: "A tiny bit",
-                        value: "b"
-                    },
-                    {
-                        label: "Its ok",
-                        value: "c"
-                    },
-                    {
-                        label: "Its very good",
-                        value: "d"
-                    },
-                    {
-                        label: "Its AMAZING!",
-                        value: "e"
-                    }
+                min: '0',
+                max: '4',
+                name: 'slider1',
+                title: 'Slider One',
+                labels: [
+                    "Not at all",
+                    "A tiny bit",
+                    "Its ok",
+                    "Its very good",
+                    "Its AMAZING!",
                 ],
+                icons: [
+                    'mdi-emoticon-angry',
+                    'mdi-emoticon-confused',
+                    'mdi-emoticon-neutral',
+                    'mdi-emoticon',
+                    'mdi-emoticon-cool'
+                ]
             },
             slider2: {
-                name: 'slider2',
                 value: '',
-                values: [
-                    {
-                        label: "Not at all",
-                        value: "a"
-                    },
-                    {
-                        label: "A tiny bit",
-                        value: "b"
-                    },
-                    {
-                        label: "Its ok",
-                        value: "c"
-                    },
-                    {
-                        label: "Its very good",
-                        value: "d"
-                    },
-                    {
-                        label: "Its AMAZING!",
-                        value: "e"
-                    }
+                min: '0',
+                max: '4',
+                name: 'slider2',
+                title: 'Slider Two',
+                labels: [
+                    "Not at all",
+                    "A tiny bit",
+                    "Its ok",
+                    "Its very good",
+                    "Its AMAZING!",
                 ],
+                icons: [
+                    'mdi-emoticon-angry',
+                    'mdi-emoticon-confused',
+                    'mdi-emoticon-neutral',
+                    'mdi-emoticon',
+                    'mdi-emoticon-cool'
+                ]
             },
             slider3: {
-                name: 'slider3',
                 value: '',
-                values: [
-                    {
-                        label: "Not at all",
-                        value: "a"
-                    },
-                    {
-                        label: "A tiny bit",
-                        value: "b"
-                    },
-                    {
-                        label: "Its ok",
-                        value: "c"
-                    },
-                    {
-                        label: "Its very good",
-                        value: "d"
-                    },
-                    {
-                        label: "Its AMAZING!",
-                        value: "e"
-                    }
+                min: '0',
+                max: '4',
+                name: 'slider3',
+                title: 'Slider Three',
+                labels: [
+                    "Not at all",
+                    "A tiny bit",
+                    "Its ok",
+                    "Its very good",
+                    "Its AMAZING!",
                 ],
+                icons: [
+                    'mdi-emoticon-angry',
+                    'mdi-emoticon-confused',
+                    'mdi-emoticon-neutral',
+                    'mdi-emoticon',
+                    'mdi-emoticon-cool'
+                ]
             },
         }
     },
@@ -136,7 +146,8 @@ export default {
 </script>
 
 <style>
-modal-window >>> .sliderContainer {
+.sliderContainer {
+    background-color: white;
     height: auto;
     width: auto;
     display: flex;

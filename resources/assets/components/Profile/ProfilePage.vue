@@ -1,7 +1,7 @@
 <template>
     <div class="profileContainer">
-        <div class="profileNav">
-            <button
+        <v-list class="profileNav">
+            <v-list-item
                 v-for="tab in tabs"
                 :key="tab.id"
                 @click="selected = tab.name;"
@@ -9,8 +9,8 @@
             >
                 <sup v-if="tab.count">({{ tab.count }})</sup>
                     {{tab.name}}
-            </button>
-        </div>
+            </v-list-item>
+        </v-list>
         <div class="profileView">
             <component  tag="div" :is="selected"></component>
         </div>
@@ -58,7 +58,7 @@ export default {
 .profileNav {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: auto;
     width: 250px;
     background-color: lightgrey;
 }

@@ -1,25 +1,16 @@
 <template>
     <div class="container">
-        <feature-list title="Menu Items" :items="listingItems">
+        <feature-list title="Listing Items" :items="listingItems">
             <template slot-scope="listingItem">
-                <div class="card">
-                    <div class="commentsAndRatings"> 
-                        <star-rating             
-                            :rating="item.rating"
-                            avtive-color="#000"
-                            :read-only="true"
-                            :star-size="15"
-                            :show-rating="false"
-                            style="margin: 5px 0"
-                        /> 
-                        |
-                        <router-link :to="{name: 'listingItemComment'}"> Comments </router-link>
-                    </div>
+                <v-card
+                class="mx-auto"
+                max-width="344"
+                >
+                    <v-card-title>
+                        {{ listingItem.title }}
+                    </v-card-title>
 
-                    <hr>
-
-                    <div class="card-horizontal">
-                        <span class="listingItem">{{ listingItem.title }}</span>
+                    <v-card-subtitle class="card-horizontal">
                         <div class="prices price-gram">
                             <h3> gram </h3>
                             {{ listingItem.price_per_gram }}
@@ -40,13 +31,43 @@
                             <h3> Oz </h3>
                             {{ listingItem.price_per_ounce }}
                         </div>
-                    </div>
-                    <details>
-                        <summary> About </summary>
-                        <p>{{ listingItem.description }}</p>
-                    </details>
-                </div>
-                <hr>
+                    </v-card-subtitle>
+
+                    <v-card-actions>
+                        <div class="commentsAndRatings"> 
+                            <star-rating             
+                                :rating="item.rating"
+                                avtive-color="#000"
+                                :read-only="true"
+                                :star-size="15"
+                                :show-rating="false"
+                                style="margin: 5px 0"
+                            /> 
+                            |
+                            <router-link :to="{name: 'listingItemComment'}"> Comments </router-link>
+                        </div>
+
+                        <v-spacer></v-spacer>
+
+                        <v-btn
+                            icon
+                            @click="show = !show"
+                        >
+                            <v-icon>
+                                {{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
+                            </v-icon>
+                        </v-btn>
+                        </v-card-actions>
+
+                        <v-expand-transition>
+                            <div v-show="show">
+                                <v-divider></v-divider>
+                                <v-card-text>
+                                    {{ listingItem.description }}
+                                </v-card-text>
+                            </div>
+                        </v-expand-transition>
+                </v-card>
             </template>
         </feature-list>
     </div>
@@ -60,6 +81,7 @@ import FeatureList from './FeatureList.vue';
 export default {
     data() {
         return {
+            show: false,
             listingItems: [],
             item: {
                 rating: 3

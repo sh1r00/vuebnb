@@ -36,11 +36,15 @@ export default {
         return {
             user: this.$store.state.user,
             messages: [],
+            chatroom: {
+                id: 1
+            }
         }
     },
     created() {
         this.fetchMessages();
-        window.Echo.private('chat')
+        let chatroom = this.chatroom
+        this.Echo.join(`chat-.${chatroom.id}`)
             .here((users) => {
                 this.usersInRoom = users
             })
@@ -59,14 +63,16 @@ export default {
     },
     methods: {
         fetchMessages() {
-            axios.get('/chat/messages').then(response => {
+            let chatroom = this.chatroom
+            axios.get('/chat/messages/' + chatroom.id).then(response => {
                 this.messages = response.data
             })
         },
         addMessage(message) {
+            let chatroom = this.chatroom
             this.messages.push(message)
             console.log('payload', message)
-            axios.post('/chat/messages', message).then(response => {
+            axios.post('/chat/messages/' + chatroom.id, message).then(response => {
             })
         }
     }

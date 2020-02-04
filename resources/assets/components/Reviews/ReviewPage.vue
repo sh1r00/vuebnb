@@ -1,8 +1,8 @@
 <template>
     <div class="review-container">
-        <button class="btn btn-review" @click.stop="openReviewModal()">
+        <v-btn color="primary" @click.stop="openReviewModal()">
             Add a Review
-        </button>
+        </v-btn>
         <modal-window ref="reviewModal">
             <div class="sliderContainer">
                 <div class="sliderWrapper">

@@ -45,7 +45,14 @@ export default {
 
 <style scoped>
 .chat-friends-list {
+    background-color: grey !important;
+    max-width: 360px;
     display: flex;
+    flex-direction: column;
+}
+.class-friends {
+    height: auto;
+    width: auto;
     flex-direction: row;
 }
 input {

@@ -25,7 +25,28 @@ PROPS:
         class="wrapper cursor-pointer"
         :to="{name: 'listing', params: {listing: listing.id}}" 
       >
+        <v-card
+          class="mx-auto"
+          max-width="344"
+        >
+          <v-img
+            class="thumbnail"
+            :style="backgroundImageStyle"
+          ></v-img>
 
+          <v-card-title class="info title">
+            {{ listing.price_per_night }}
+            {{ listing.title }}
+          </v-card-title>
+          
+          <v-card-subtitle class="info address">
+            {{ listing.address }}
+          </v-card-subtitle>
+        </v-card>
+    </router-link>
+    <listing-save :id="listing.id"></listing-save>
+  </div>
+  <!--
       <div class="thumbnail" :style="backgroundImageStyle"></div>
 
       <div class="info title">
@@ -34,12 +55,7 @@ PROPS:
       </div>
 
       <div class="info address">{{ listing.address }}</div>
-
-    </router-link>
-
-    <listing-save :id="listing.id"></listing-save>
-
-  </div>
+-->
 </template>
 
 

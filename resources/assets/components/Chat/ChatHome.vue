@@ -49,9 +49,13 @@ export default {
 
 <style>
 .chat-view {
-    position: fixed;
+    background-color: grey !important;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
 }
 .chat-list {
+    height: auto;
     width: auto;
     justify-content: right;
 }

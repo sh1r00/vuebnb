@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
 {
+
+    public function index() 
+    {
+        $users = User::where('id', '!=', auth()->user()->id)->get();
+        return view('user.list', compact('users'));
+    }
     // add or remove the ID from the user's saved listings
     public function toggle_saved()
     {

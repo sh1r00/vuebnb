@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMessagesTable extends Migration
+class CreateReceiversTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('messages', function (Blueprint $table) {
+        Schema::create('receivers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('chat_room_id')->refrences('id')->on('chat_rooms');
-            $table->integer('sender_id')->refrences('id')->on('users');
-            $table->text('message');
-            $table->timestamps();
+            $table->integer('message_id')->refrences('id')->on('messages');
+            $table->integer('receiver_id')->refrences('id')->on('users');
+            $table->timestamp('read_at')->nullable();
         });
     }
 
@@ -29,6 +28,6 @@ class CreateMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('receivers');
     }
 }

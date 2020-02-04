@@ -69,9 +69,12 @@ PURPOSE:
         </div>
         <hr>
         <div class="listItems">
-          <button type="button" class="btn btn-primary" @click.stop="openMenuModal()">
-            Add Menu Item
-          </button>
+          <v-btn
+            color="primary"
+            @click.stop="openListingItemModal()"
+          >
+            Add Listing Item
+          </v-btn>
         </div>
         <listing-items></listing-items>
                 <!--
@@ -86,8 +89,8 @@ PURPOSE:
 
     </div>
 
-    <modal-window ref="menuModal">
-      <listingItemCreate :header="menuModalHeader"></listingItemCreate>
+    <modal-window ref="listingItemModal">
+      <listingItemCreate :header="listingItemModalHeader"></listingItemCreate>
     </modal-window>
     <modal-window ref="imagemodal">
       <image-carousel :images="listing.images"></image-carousel>
@@ -137,8 +140,8 @@ PURPOSE:
       openImgModal () {
         this.$refs.imagemodal.modalOpen = true;
       },
-      openMenuModal() {
-          this.$refs.menuModal.modalOpen = true;
+      openListingItemModal() {
+          this.$refs.listingItemModal.modalOpen = true;
       }
     }
     

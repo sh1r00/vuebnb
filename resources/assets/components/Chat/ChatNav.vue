@@ -1,29 +1,25 @@
 <template>
     <div
         class="chat-nav-container"
-        style="position: fixed; bottom: 0; width: 100%;"
     >
         <div class="tab-view">
             <component tag="div" :is="selected.componentName" :data="selected.value" @chatWith="chatingWith"></component>
         </div>
-        <nav class="chat-nav">
-            <ul class="nav nav-pills flex-column flex-sm-row">
-                <button
-                    v-for="tab in tabs"
-                    :key="tab.id"
-                    @click="selectedTab(tab)"
-                    tag="li"
-                    :class="['nav-item', {active:selected.name === tab.name}]"
-                    :aria-controls="tab.aria.controls"
-                    :aria-selected="tab.aria.selected"
-                >
-                    <sup v-if="tab.count">
-                        {{ tab.count }}
-                    </sup>
-                    {{ tab.name }}
-                </button>
-            </ul>
-        </nav>
+        <v-tabs class="chat-nav">
+            <v-tab
+                v-for="tab in tabs"
+                :key="tab.id"
+                @click="selectedTab(tab)"
+                :class="['nav-item', {active:selected.name === tab.name}]"
+                :aria-controls="tab.aria.controls"
+                :aria-selected="tab.aria.selected"
+            >
+                <sup v-if="tab.count">
+                    {{ tab.count }}
+                </sup>
+                {{ tab.name }}
+            </v-tab>
+        </v-tabs>
     </div>
 </template>
 

@@ -23,9 +23,9 @@ Route::post('/listingItemCreate/{listing_id}', 'ListingItemController@index');
 
 Route::get('/chat', 'ChatsController@index');
 
-Route::get('/chat/messages', 'ChatsController@fetch_messages');
+Route::get('/chat/messages/{chatroom}', 'ChatsController@index');
 
-Route::post('/chat/messages', 'ChatsController@send_message');
+Route::post('/chat/messages/{chatroom}', 'ChatsController@store');
 
 Route::post('/user/toggle_saved', 'UserController@toggle_saved')
   ->middleware('auth')

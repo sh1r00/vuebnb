@@ -8,7 +8,7 @@ import Register from '../components/Auth/Register.vue'
 
 import ListingItemCreate from '../components/Listings/ListingItemCreate.vue'
 import ListingCreate from '../components/Listings/ListingCreate.vue'
-import ListingItemComment from '../components/Listings/listingItemComment'
+import ListingItemComment from '../components/Listings/ListingItemComment'
 import ListingPage from '../components/Listings/ListingPage.vue'
 import HomePage from '../components/Listings/HomePage.vue'
 import ProfileFavs from '../components/Profile/ProfileFavs.vue'

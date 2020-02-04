@@ -10,7 +10,7 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "ftp-deploy-with-images": "cross-env node ./ftp.js",
     "ftp-deploy": "cross-env FTP_SKIP_IMAGES=1 node ./ftp.js",
-    "postinstall": "npm run dev"
+    "postinstall": "npm run prod"
   },
   "devDependencies": {
     "@mdi/font": "^4.7.95",

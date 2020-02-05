@@ -22,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
          * before we run the database migrations in our production app
          */
         Schema::defaultStringLength(191);
+
+        if($this->app->environment('production')) {
+            \URL::forceScheme('https');
+        }
     }
 
     /**

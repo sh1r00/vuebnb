@@ -68,7 +68,11 @@ mix.webpackConfig({
     ]
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+      generateStatsFile: true,
+      statsOptions: { source: false }
+    }),
     new VuetifyLoaderPlugin(),
     new Dotenv()
   ],

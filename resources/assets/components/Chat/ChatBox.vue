@@ -28,6 +28,9 @@ import ChatMessages from './ChatMessages.vue'
 import ChatForm from './ChatForm.vue'
 
 export default {
+    props: {
+        chatWith: Object
+    },
     components: {
         ChatMessages,
         ChatForm
@@ -37,14 +40,14 @@ export default {
             user: this.$store.state.user,
             messages: [],
             chatroom: {
-                id: 1
+                id: 1 // this.user.id + this.chatWith.id
             }
         }
     },
     created() {
         this.fetchMessages();
-        let chatroom = this.chatroom
-        this.Echo.join(`chat-.${chatroom.id}`)
+        let chatroom = 1
+        this.Echo.join(`chat-.${chatroom}`)
             .here((users) => {
                 this.usersInRoom = users
             })

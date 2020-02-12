@@ -3,7 +3,12 @@
         class="chat-nav-container"
     >
         <div class="tab-view">
-            <component tag="div" :is="selected.componentName" :data="selected.value" @chatWith="chatingWith"></component>
+            <component
+                tag="div"
+                :is="selected.componentName"
+                :data="selected.value"
+                @chatWith="chatingWith"
+            ></component>
         </div>
         <v-tabs class="chat-nav">
             <v-tab

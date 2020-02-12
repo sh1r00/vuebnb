@@ -2,7 +2,7 @@
     <div>
         <v-navigation-drawer
             v-model="sidebar" 
-            disable-resize-watcher="true"
+            :disable-resize-watcher="true"
             app
         >
             <v-list>

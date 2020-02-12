@@ -34,8 +34,8 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: process.env.PUSHER_APP_KEY,
-    cluster: process.env.PUSHER_APP_CLUSTER,
+    key: c15690730971334fa412, // process.env.PUSHER_APP_KEY,
+    cluster: us2, // process.env.PUSHER_APP_CLUSTER,
     encrypted: true,
     /** 
      * If using passport

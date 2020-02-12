@@ -26,7 +26,7 @@
 
     // provide the Anti-CSRF token
     window.csrf_token = "{{ csrf_token() }}"
-    window.pusherKey = "{{ config('broadcasting.connections.pusher.key') }}"
+    window.pusherKey = "{{ config('broadcasting.connections.pusher.options.key') }}"
     window.pusherCluster = "{{ config('broadcasting.connections.pusher.options.cluster') }}"
   </script>
 
